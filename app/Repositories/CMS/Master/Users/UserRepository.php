@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\CMS\Master;
+namespace App\Repositories\CMS\Master\Users;
 
-use App\Interfaces\CMS\Master\UserInterface;
+use App\Interfaces\CMS\Master\Users\UserInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 Use App\Models\User;
@@ -46,7 +46,7 @@ class UserRepository implements UserInterface
             $user = $id ? User::findOrFail($id) : $this->newUser();
             $user->name = $request->input('name');
             $user->email = preg_replace('/\s+/', '', strtolower($request->input('email')));
-            $user->password = \Hash::make($request->password);
+            if(!$id) $user->password = \Hash::make($request->password);
             $user->save();
             
             DB::commit();

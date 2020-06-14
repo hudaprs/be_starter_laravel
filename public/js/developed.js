@@ -4,6 +4,7 @@ $(function () {
 
     /**
      * Show modal
+     * This modal contain Large modal(#modal-lg) and Extra Large Modal(#modal-xl)
      */
     $("body").on("click", ".btn-show-modal", function (event) {
         event.preventDefault();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\CMS\Master;
+namespace App\Interfaces\CMS\Master\Users;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;

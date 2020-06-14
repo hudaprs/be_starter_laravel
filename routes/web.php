@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 /**
-* @desc     CMS Route List
+* CMS Route List
 */
 Route::group([
     'prefix' => 'cms', 
@@ -14,14 +14,31 @@ Route::group([
     Route::get('/', 'DashboardController@index');
 
     /**
-     * @desc Master Route List
+     * Master Route List
      */
     Route::group([
-        'prefix' => 'master',
         'namespace' => 'Master'
     ], function() {
-        Route::get('users/datatables', 'UserController@usersDataTables')->name('users.datatables');
-        Route::resource('users', 'UserController');
+        // Users
+        Route::group([
+            'namespace' => 'Users'
+        ], function() {
+            // Profile
+            Route::get('users/{user}/profile', 'ProfileController@index')->name('users.profile');
+            Route::put('users/{user}/profile', 'ProfileController@updateUserProfile')->name('users.profile-update');
+
+            // Change Password
+            Route::get('users/{user}/profile/change-password', 'ProfileController@editPassword')->name('users.edit-password');
+            Route::put('users/{user}/profile/change-password', 'ProfileController@updatePassword')->name('users.update-password');
+
+            Route::group([
+                'prefix' => 'master'
+            ], function() {
+                // Users Master
+                Route::get('users/datatables', 'UserController@usersDataTables')->name('users.datatables');
+                Route::resource('users', 'UserController');
+            });
+        });
     });
 }); 
 

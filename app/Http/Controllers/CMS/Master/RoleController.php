@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
 use App\Interfaces\CMS\Master\RoleInterface;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -15,6 +16,12 @@ class RoleController extends Controller
     public function __construct(RoleInterface $roleInterface)
     {
         $this->roleInterface = $roleInterface;
+        
+        // Only High Admin can access this page
+        $this->middleware(function($request, $next) {
+            if(Gate::allows('is-high-admin')) return $next($request);
+            abort(403, config('globalvar.high_admin_gate_message'));
+        });
     }
 
     /**
@@ -97,12 +104,21 @@ class RoleController extends Controller
     }
 
     /**
-     * Get users by DataTables
+     * Get roles by DataTables
      * 
      * @param \Illuminate\Http\Request;
      */
     public function roleDataTables(Request $request)
     {
         return $this->roleInterface->roleDataTables($request);
+    }
+
+    /**
+     * Get all roles
+     * 
+     */
+    public function getRoles(Request $request)
+    {
+        return $this->roleInterface->getRoles($request);
     }
 }

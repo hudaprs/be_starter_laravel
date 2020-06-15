@@ -49,6 +49,7 @@ Route::group([
         ], function() {
             // Roles
             Route::get('roles/datatables', 'RoleController@roleDataTables')->name('roles.datatables');
+            Route::get('roles/all', 'RoleController@getRoles')->name('roles.all');
             Route::resource('roles', 'RoleController');
         });
     });

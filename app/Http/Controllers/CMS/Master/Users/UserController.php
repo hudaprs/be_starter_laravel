@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\CMS\Master\Users\UserInterface;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -14,6 +15,12 @@ class UserController extends Controller
     public function __construct(UserInterface $userInterface)
     {
         $this->userInterface = $userInterface;
+        
+        // Only high admin can access this resource
+        $this->middleware(function($request, $next) {
+            if(Gate::allows('is-high-admin')) return $next($request);
+            abort(403, config('globalvar.high_admin_gate_message'));
+        });
     }
 
     /**

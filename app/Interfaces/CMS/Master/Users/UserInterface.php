@@ -15,7 +15,7 @@ interface UserInterface
      * 
      * @param \Illuminate\Http\Request $request
      */
-    public function usersDataTables(Request $request);
+    public function userDataTables(Request $request);
 
     /**
      * Create new instance of user model

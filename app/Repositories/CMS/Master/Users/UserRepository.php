@@ -11,7 +11,7 @@ use DB;
 
 class UserRepository implements UserInterface
 {
-    public function usersDataTables(Request $request)
+    public function userDataTables(Request $request)
     {
         $users = User::all();
 

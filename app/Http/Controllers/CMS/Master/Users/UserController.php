@@ -18,7 +18,7 @@ class UserController extends Controller
         
         // Only high admin can access this resource
         $this->middleware(function($request, $next) {
-            if(Gate::allows('is-high-admin')) return $next($request);
+            if(Gate::allows('is_high_admin')) return $next($request);
             abort(403, config('globalvar.high_admin_gate_message'));
         });
     }

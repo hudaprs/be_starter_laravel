@@ -11,7 +11,7 @@ Route::group([
     'namespace' => 'CMS'
 ], function() {
     // Dashboard
-    Route::get('/', 'DashboardController@index');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
 
     /**
      * Master Route List

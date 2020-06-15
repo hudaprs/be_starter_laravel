@@ -1,5 +1,6 @@
 @extends('layouts.cms')
 
+@section('title', 'Profile Management')
 @section('header-title', 'Profile Management')
 
 @section('content')
@@ -10,9 +11,9 @@
           <div class="text-center">
             <img 
               class="profile-user-img img-fluid img-circle" 
-              src="{{ Auth::user()->image === null 
-                ? Avatar::create(Auth::user()->name)->toBase64()
-                : asset('storage/images/users/' . Auth::user()->image) }}" 
+              src="{{ $user->image === null 
+                ? Avatar::create($user->name)->toBase64()
+                : asset('storage/images/users/' . $user->image) }}" 
               alt="User profile picture">
           </div>
 

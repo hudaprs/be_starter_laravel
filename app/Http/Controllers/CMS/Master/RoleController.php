@@ -19,7 +19,7 @@ class RoleController extends Controller
         
         // Only High Admin can access this page
         $this->middleware(function($request, $next) {
-            if(Gate::allows('is-high-admin')) return $next($request);
+            if(Gate::allows('is_high_admin')) return $next($request);
             abort(403, config('globalvar.high_admin_gate_message'));
         });
     }

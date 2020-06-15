@@ -25,8 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('is-high-admin', function($user) {
+        // Only High Admin
+        Gate::define('is_high_admin', function($user) {
             return $user->role->name === 'High Admin';
+        });
+
+        // Check for the role for guest, but High Admin can pass
+        Gate::define('is_correct_user', function($user, $otherUser) {
+            if($user->id !== $otherUser->id && $user->role->name === 'High Admin') return true;
+            if($user->id === $otherUser->id) return true;
         });
     }
 }

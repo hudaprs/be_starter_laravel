@@ -19,7 +19,11 @@
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 {{-- Sweetalert Option --}}
 <script src="{{ asset('js/cms/sweetalert/option.js') }}"></script>
+{{-- Select2 --}}
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 {{-- Developed Script --}}
-<script src="{{ asset('js/developed.js') }}"></script>
+<script src="{{ asset('js/cms/developed.js') }}"></script>
+{{-- Helper --}}
+<script src="{{ asset('js/cms/helper.js') }}"></script>
 {{-- Push some new script --}}
 @stack('script')

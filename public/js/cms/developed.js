@@ -16,9 +16,13 @@ $(function () {
 
         $(`${checkClass}`).modal("show");
         $(`${checkClass} .modal-title`).html(title);
+
+        // Remove save button when get into detail
         me.hasClass("just-show")
             ? $(`${checkClass} .btn-save`).hide()
             : $(`${checkClass} .btn-save`).show();
+
+        // Change the word according action
         me.hasClass("edit")
             ? $(`${checkClass} .btn-save`).html("Edit")
             : $(`${checkClass} .btn-save`).html("Create");
@@ -37,6 +41,8 @@ $(function () {
 
                 // Remove modal
                 $(`${checkClass} .modal-body`).html(response);
+
+                // Update state
                 currentModal = checkClass;
 
                 /**
@@ -71,7 +77,7 @@ $(function () {
     $("body").on("click", ".btn-save", function (event) {
         event.preventDefault();
 
-        let form = $(".modal-body form"),
+        let form = $(`${currentModal} .modal-body form`),
             url = form.prop("action"),
             method =
                 $("input type[name=_method]").val() === undefined

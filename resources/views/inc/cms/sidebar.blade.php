@@ -29,33 +29,36 @@
                         </p>
                     </a>
                 </li>
-                <li 
-                    class="nav-item has-treeview 
-                        @if(Request::is('cms/master*')) 
-                            {{ 'menu-open' }} 
-                        @endif">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-list-alt"></i>
-                        <p>
-                            Master
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('cms/master/users') ? 'active' : '' }}">
-                                <i class="far fa-user nav-icon"></i>
-                                <p>User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                        <a href="{{ route('roles.index') }}" class="nav-link {{ Request::is('cms/master/roles') ? 'active' : '' }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Role</p>
+
+                @if(auth()->user()->role->name === 'High Admin')
+                    <li 
+                        class="nav-item has-treeview 
+                            @if(Request::is('cms/master*')) 
+                                {{ 'menu-open' }} 
+                            @endif">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>
+                                Master
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
-                        </li>
-                    </ul>
-                </li>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('cms/master/users') ? 'active' : '' }}">
+                                    <i class="far fa-user nav-icon"></i>
+                                    <p>User</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('roles.index') }}" class="nav-link {{ Request::is('cms/master/roles') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Role</p>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>

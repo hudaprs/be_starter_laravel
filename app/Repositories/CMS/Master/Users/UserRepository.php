@@ -13,7 +13,7 @@ class UserRepository implements UserInterface
 {
     public function userDataTables(Request $request)
     {
-        $users = User::all();
+        $users = User::query();
 
         // Check if request is ajax
         if($request->ajax()) {
@@ -47,6 +47,7 @@ class UserRepository implements UserInterface
             $user->name = $request->input('name');
             $user->email = preg_replace('/\s+/', '', strtolower($request->input('email')));
             if(!$id) $user->password = \Hash::make($request->password);
+            $user->role_id = $request->input('role');
             $user->save();
             
             DB::commit();
@@ -55,7 +56,6 @@ class UserRepository implements UserInterface
             ], $id ? 200 : 201);
         } catch(\Exception $e) {
             DB::rollBack();
-            
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);
@@ -64,7 +64,7 @@ class UserRepository implements UserInterface
 
     public function getUserById($id)
     {
-        return User::findOrFail($id);
+        return User::with('role')->findOrFail($id);
     }
 
     public function deleteUser($id)

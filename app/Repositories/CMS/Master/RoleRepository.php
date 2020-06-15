@@ -34,6 +34,11 @@ class RoleRepository implements RoleInterface
         }
     }
 
+    public function getRoles(Request $request)
+    {
+        return Role::where('name', 'LIKE', '%' . $request->get('q') . '%')->orderBy('name', 'asc')->get();
+    }
+
     public function newRole()
     {
         return new Role;

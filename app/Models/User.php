@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return Carbon::parse($value)->format('m-d-Y H:i:s');
     }
+
+    /**
+     * Relation to role
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role', 'role_id');
+    }
 }

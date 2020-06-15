@@ -29,4 +29,26 @@
     </div>
   @endif
 
+  <div class="form-group">
+    {{ Form::label('role', 'Role') }}
+    <select name="role" id="role" class="form-control {{ $user->exists ? 'role-edit' : 'role-create' }}"></select>
+  </div>
+
 {!! Form::close() !!}
+
+<script>
+  $(function() {
+    var user = {!! $user !!}
+
+    // Role List
+    ajaxSelect2(`${$.isEmptyObject(user) ? '.role-create' : '.role-edit'}`, "/cms/master/roles/all");
+
+    /*
+    ** Change select option when data not null
+    */
+    if(user) {
+      var changeRole = user.role ? new Option(user.role.name, user.role.id, true, true) : null
+      $('.role-edit').append(changeRole).trigger('change')
+    }
+  })
+</script>

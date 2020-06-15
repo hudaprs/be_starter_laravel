@@ -33,7 +33,8 @@ class UserRequest extends FormRequest
                 : 'required|max:255',
             'password_confirmation' => request()->route('user')
                 ? 'nullable '
-                : 'required|same:password'
+                : 'required|same:password',
+            'role' => 'required'
         ];
     }
 }

@@ -1,5 +1,6 @@
 @extends('layouts.cms')
 
+@section('title', 'Dashboard')
 @section('header-title', 'Dashboard')
 
 @section('content')

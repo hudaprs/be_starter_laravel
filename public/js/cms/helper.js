@@ -1,4 +1,5 @@
 /**
+ * Helping you in HTML
  * This file is for formatting the HTML input
  *
  * @author Huda Prasetyo
@@ -143,7 +144,7 @@ const timePicker = (element) => {
  * @param {string} url
  * @param {string} placeholder
  */
-const ajaxSelect2 = (element, url, placeholder) => {
+function ajaxSelect2(element, url, placeholder) {
     const disableSearch = url == "/js/status.json" ? Infinity : false;
     return $(element).select2({
         minimumResultsForSearch: disableSearch,
@@ -162,7 +163,7 @@ const ajaxSelect2 = (element, url, placeholder) => {
             },
         },
     });
-};
+}
 
 /**
  * Format html input, make value to uppercase and remove special character
@@ -187,7 +188,7 @@ const upperCaseInput = (element) => {
  *
  * @param {string} element
  */
-const RemoveSpecialChar = (element) => {
+const removeSpecialChar = (element) => {
     return document
         .getElementById(element)
         .addEventListener("keyup", ({ target }) => {

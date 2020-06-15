@@ -18,6 +18,16 @@ interface RoleInterface
     public function roleDataTables(Request $request);
 
     /**
+     * Get all roles
+     * 
+     * @method GET cms/master/roles/all
+     * @access private
+     * 
+     * @param \Illuminate\Http\Request $request
+     */
+    public function getRoles(Request $request);
+
+    /**
      * Create new instance of role model
      * This is just for binding a form
      */

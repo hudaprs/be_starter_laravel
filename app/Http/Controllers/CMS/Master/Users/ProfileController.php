@@ -54,4 +54,22 @@ class ProfileController extends Controller
         if($user->id !== auth()->user()->id) return abort(403);
         else return $this->profileInterface->updateUserPassword($request, $id);
     }
+
+    public function deleteUserPhotoProfile($id)
+    {
+        $user = $this->userInterface->getUserById($id);
+
+        // Check for the correct user
+        if($user->id !== auth()->user()->id) return abort(403);
+        else return $this->profileInterface->deleteUserPhotoProfile($id);
+    }
+
+    public function deleteUserAccount($id)
+    {
+        $user = $this->userInterface->getUserById($id);
+
+        // Check for the correct user
+        if($user->id !== auth()->user()->id) return abort(403);
+        else return $this->profileInterface->deleteUserAccount($id);
+    }
 }

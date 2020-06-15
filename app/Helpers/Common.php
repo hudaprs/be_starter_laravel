@@ -68,17 +68,24 @@ class Common
 
             // If there's model, delete the existing image
             if($model) {
-                if($model->image !== 'noimage.jpeg') {
-                    Storage::delete("public/images/$storePath/$model->image");
-                }
+                Storage::delete("public/images/$storePath/$model->image");
             }
 
             return $fileNameToStore;
         } else {
             // if there's no file or user didn't input anything
             if($model) return $model->image; 
-            else return $fileNameToStore = 'noimage.jpeg';
+            else return $fileNameToStore = null;
         }
+    }
+
+    /**
+     * Delete file from storage
+     * 
+     */
+    public static function deleteImage($path, $model)
+    {
+        return Storage::delete("public/images/$path/" . $model->image);
     }
 
     /**

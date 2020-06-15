@@ -14,12 +14,22 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown user-menu">
       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        <img src="{{ asset('storage/images/users/' . auth()->user()->image) }}" class="user-image img-circle elevation-2" alt="User Image">
+        <img 
+          src="{{ Auth::user()->image === null 
+            ? Avatar::create(Auth::user()->name)->toBase64()
+            : asset('storage/images/users/' . Auth::user()->image) }}" 
+          class="user-image img-circle elevation-2" 
+          alt="User Image">
         <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
       </a>
       <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <li class="user-header" style="background-color: #F8F9FA;">
-          <img src="{{ asset('storage/images/users/' . auth()->user()->image) }}" class="img-circle elevation-2" alt="User Image">
+          <img 
+            src="{{ Auth::user()->image === null 
+                  ? Avatar::create(Auth::user()->name)->toBase64()
+                  : asset('storage/images/users/' . Auth::user()->image) }}" 
+            class="img-circle elevation-2" 
+            alt="User Image">
           <p>
             {{ auth()->user()->name }}
           </p>

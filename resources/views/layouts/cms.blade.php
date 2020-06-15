@@ -8,7 +8,7 @@
   <title>Laravel Starter</title>
   @include('inc.cms.style')
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini">  
   <div class="wrapper">
     {{-- Navbar --}}
     @include('inc.cms.navbar')

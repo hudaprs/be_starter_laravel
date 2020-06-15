@@ -11,7 +11,7 @@ interface ProfileInterface
     /**
      * Update user profile
      * 
-     * @method POST cms/master/users/{id}/profile
+     * @method PUT cms/master/users/{id}/profile
      * @access private
      * 
      * @param App\Http\Requests\ProfileRequest $request
@@ -22,11 +22,31 @@ interface ProfileInterface
     /**
      * Update user password
      * 
-     * @method POST cms/master/users/{id}/profile/change-password
+     * @method PUT cms/master/users/{id}/profile/change-password
      * @access private
      * 
      * @param App\Http\Requests\PasswordRequest $request
      * @param int $id
      */
     public function updateUserPassword(PasswordRequest $request, $id);
+
+    /**
+     * Delete user photo profile
+     * 
+     * @method PUT cms/master/users/{id}/profile/delete-photo
+     * @access private
+     * 
+     * @param int $id
+     */
+    public function deleteUserPhotoProfile($id);
+
+    /**
+     * Delete user account
+     * 
+     * @method DELETE cms/master/users/{id}/profile/delete-account
+     * @access private
+     * 
+     * @param int $id
+     */
+    public function deleteUserAccount($id);
 }

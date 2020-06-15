@@ -26,6 +26,8 @@ Route::group([
             // Profile
             Route::get('users/{user}/profile', 'ProfileController@index')->name('users.profile');
             Route::put('users/{user}/profile', 'ProfileController@updateUserProfile')->name('users.profile-update');
+            Route::put('users/{user}/profile/delete-photo', 'ProfileController@deleteUserPhotoProfile')->name('users.delete-photo-profile');
+            Route::delete('users/{user}/profile/delete-account', 'ProfileController@deleteUserAccount')->name('users.delete-account');
 
             // Change Password
             Route::get('users/{user}/profile/change-password', 'ProfileController@editPassword')->name('users.edit-password');

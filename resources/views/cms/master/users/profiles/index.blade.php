@@ -8,7 +8,12 @@
       <div class="card card-primary card-outline">
         <div class="card-body box-profile">
           <div class="text-center">
-            <img class="profile-user-img img-fluid img-circle" src="{{ asset('storage/images/users/' . $user->image) }}" alt="User profile picture">
+            <img 
+              class="profile-user-img img-fluid img-circle" 
+              src="{{ Auth::user()->image === null 
+                ? Avatar::create(Auth::user()->name)->toBase64()
+                : asset('storage/images/users/' . Auth::user()->image) }}" 
+              alt="User profile picture">
           </div>
 
           <h3 class="profile-username text-center">{{ $user->name }}</h3>
@@ -19,9 +24,25 @@
             </li>
           </ul>
 
-          {{-- <a href="{{ route('profiles.delete-photo-profile', $user->id) }}" class="btn btn-warning btn-block" onclick="return confirm('Hapus foto profile?')"><strong>Hapus Foto Profil</strong></a> --}}
+          {!! 
+            Form::open([
+              'route' => ['users.delete-photo-profile', $user->id],
+              'method' => 'PUT',
+              'onSubmit' => 'return confirm("Delete photo profile?")'
+            ]) 
+          !!}
+            {{ Form::submit('Delete Photo Profile', ['class' => 'btn btn-block btn-warning']) }}
+          {!! Form::close() !!}
           <hr>
-          {{-- <a href="{{ route('profiles.delete-account', $user->id) }}" class="btn btn-danger btn-block" onclick="return confirm('Hapus Akun?')">Hapus Akun</a> --}}
+          {!! 
+            Form::open([
+              'route' => ['users.delete-account', $user->id],
+              'method' => 'DELETE',
+              'onSubmit' => 'return confirm("Delete account?")'
+            ]) 
+          !!}
+            {{ Form::submit('Delete Acccount', ['class' => 'btn btn-block btn-danger']) }}
+          {!! Form::close() !!}
         </div>
       </div>
     </div>

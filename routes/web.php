@@ -33,13 +33,23 @@ Route::group([
             Route::get('users/{user}/profile/change-password', 'ProfileController@editPassword')->name('users.edit-password');
             Route::put('users/{user}/profile/change-password', 'ProfileController@updatePassword')->name('users.update-password');
 
+            // Master Routes
             Route::group([
                 'prefix' => 'master'
             ], function() {
-                // Users Master
-                Route::get('users/datatables', 'UserController@usersDataTables')->name('users.datatables');
+                // Users
+                Route::get('users/datatables', 'UserController@userDataTables')->name('users.datatables');
                 Route::resource('users', 'UserController');
             });
+        });
+
+        // Master List
+        Route::group([
+            'prefix' => 'master'
+        ], function() {
+            // Roles
+            Route::get('roles/datatables', 'RoleController@roleDataTables')->name('roles.datatables');
+            Route::resource('roles', 'RoleController');
         });
     });
 }); 

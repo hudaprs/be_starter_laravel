@@ -1,20 +1,20 @@
 @extends('layouts.cms')
 
-@section('title', 'Users')
-@section('header-title', 'Users Management')
+@section('title', 'Roles')
+@section('header-title', 'Roles Management')
 
 @section('content')
   <div class="card">
     <div class="card-header">
       <div class="d-flex justify-content-between">
         <h3 class="card-title">
-          Users
+          Roles
         </h3>
         <a 
-          href="{{ route('users.create') }}" 
+          href="{{ route('roles.create') }}" 
           class="btn btn-sm btn-success btn-show-modal lg"
           title="Create New User">
-          <em class="fas fa-plus"></em> Create New User
+          <em class="fas fa-plus"></em> Create New Role
         </a>
       </div>
     </div>
@@ -25,7 +25,6 @@
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Email</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -37,5 +36,5 @@
 
 @push('script')
   <script src="{{ asset('js/cms/datatables.js') }}"></script>
-  <script src="{{ asset('js/cms/master/users/index.js') }}"></script>
+  <script src="{{ asset('js/cms/master/roles/index.js') }}"></script>
 @endpush

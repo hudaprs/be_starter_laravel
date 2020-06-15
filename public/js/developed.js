@@ -38,6 +38,22 @@ $(function () {
                 // Remove modal
                 $(`${checkClass} .modal-body`).html(response);
                 currentModal = checkClass;
+
+                /**
+                 * Disable keyboard enter in modal
+                 */
+                if ($(`${checkClass} .modal-body form`).length) {
+                    $(`${checkClass} .modal-body form`).on(
+                        "keyup keypress",
+                        function (e) {
+                            var keyCode = e.keyCode || e.which;
+                            if (keyCode === 13) {
+                                e.preventDefault();
+                                return false;
+                            }
+                        }
+                    );
+                }
             },
             error: function (xhr) {
                 let error = xhr.responseJSON;

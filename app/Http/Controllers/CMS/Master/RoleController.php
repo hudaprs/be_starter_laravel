@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\CMS\Master\Users;
+namespace App\Http\Controllers\CMS\Master;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
-use App\Interfaces\CMS\Master\Users\UserInterface;
+use App\Http\Requests\RoleRequest;
+use App\Interfaces\CMS\Master\RoleInterface;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
-    protected $userInterface;
 
-    public function __construct(UserInterface $userInterface)
+    protected $roleInterface;
+
+    public function __construct(RoleInterface $roleInterface)
     {
-        $this->userInterface = $userInterface;
+        $this->roleInterface = $roleInterface;
     }
 
     /**
@@ -23,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('cms.master.users.index');
+        return view('cms.master.roles.index');
     }
 
     /**
@@ -33,19 +34,19 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = $this->userInterface->newUser();
-        return view('cms.master.users.create', compact('user'));
+        $role = $this->roleInterface->newRole();
+        return view('cms.master.roles.create', compact('role'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\UserRequest $request
+     * @param  App\Http\Requests\RoleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(RoleRequest $request)
     {
-        return $this->userInterface->requestUser($request);
+        return $this->roleInterface->requestRole($request);
     }
 
     /**
@@ -56,8 +57,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->userInterface->getUserById($id);
-        return view('cms.master.users.show', compact('user'));
+        $role = $this->roleInterface->getRoleById($id);
+        return view('cms.master.roles.show', compact('role'));
     }
 
     /**
@@ -68,20 +69,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->userInterface->getUserById($id);
-        return view('cms.master.users.create', compact('user'));
+        $role = $this->roleInterface->getRoleById($id);
+        return view('cms.master.roles.create', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\UserRequest $request
+     * @param  App\Http\Requests\RoleRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(RoleRequest $request, $id)
     {
-        return $this->userInterface->requestUser($request, $id);
+        return $this->roleInterface->requestRole($request, $id);
     }
 
     /**
@@ -92,7 +93,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return $this->userInterface->deleteUser($id);
+        return $this->roleInterface->deleteRole($id);
     }
 
     /**
@@ -100,8 +101,8 @@ class UserController extends Controller
      * 
      * @param \Illuminate\Http\Request;
      */
-    public function userDataTables(Request $request)
+    public function roleDataTables(Request $request)
     {
-        return $this->userInterface->userDataTables($request);
+        return $this->roleInterface->roleDataTables($request);
     }
 }

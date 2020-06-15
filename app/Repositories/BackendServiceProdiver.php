@@ -16,5 +16,9 @@ class BackendServiceProvider extends ServiceProvider
             'App\Interfaces\CMS\Master\Users\ProfileInterface',
             'App\Repositories\CMS\Master\Users\ProfileRepository'
         );
+        $this->app->bind(
+            'App\Interfaces\CMS\Master\RoleInterface',
+            'App\Repositories\CMS\Master\RoleRepository'
+        );
     }
 }

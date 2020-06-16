@@ -14,4 +14,12 @@
       Welcome to Laravel starter.
     </div>
   </div>
+
+  {{-- Registered User --}}
+  @include('cms.registered_user')
 @endsection
+
+@push('script')
+  <script src="{{ asset('js/cms/datatables.js') }}"></script>
+  <script src="{{ asset('js/cms/dashboard/registeredUser.js') }}"></script>
+@endpush

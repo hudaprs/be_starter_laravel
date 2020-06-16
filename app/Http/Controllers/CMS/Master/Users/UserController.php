@@ -20,7 +20,7 @@ class UserController extends Controller
         $this->middleware(function($request, $next) {
             if(Gate::allows('is_high_admin')) return $next($request);
             abort(403, config('globalvar.high_admin_gate_message'));
-        });
+        }, ['except' => ['userDataTables']]);
     }
 
     /**

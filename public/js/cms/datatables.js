@@ -4,8 +4,16 @@
  * @param   {DOMString} element
  * @param   {string} url
  * @param   {array of object} columns
+ * @param   {array} disableOrdering
+ * @param   {array} order
  */
-const dataTables = (element, url, columns) => {
+const dataTables = (
+    element,
+    url,
+    columns,
+    disableOrdering = null,
+    order = null
+) => {
     return $(element).DataTable({
         processing: true,
         responsive: true,
@@ -14,7 +22,7 @@ const dataTables = (element, url, columns) => {
         columns,
         columnDefs: [
             {
-                targets: [0, -1],
+                targets: disableOrdering ? disableOrdering : [0, -1],
                 sortable: false,
             },
             {
@@ -24,6 +32,6 @@ const dataTables = (element, url, columns) => {
                 },
             },
         ],
-        order: [[1, "asc"]],
+        order: [order ? order : [1, "asc"]],
     });
 };

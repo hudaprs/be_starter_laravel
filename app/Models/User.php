@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -43,7 +42,7 @@ class User extends Authenticatable
      */
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format('m-d-Y H:i:s');
+        return date('m-d-Y H:i:s', strtotime($value));
     }
 
     /**
